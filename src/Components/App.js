@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
 import Routes from "./Routes";
+import Header from "./Header";
 
 const QUERY = gql`
   {
@@ -16,9 +17,7 @@ const QUERY = gql`
 `;
 
 const Wrapper = styled.div`
-  margin: 0 auto;
-  min-width: 200px;
-  max-width: ${props => props.theme.maxWidth};
+  margin: 0;
   width: 100%;
 `;
 
@@ -33,6 +32,7 @@ export default () => {
         <GlobalStyles />
         <Router>
           <>
+            <Header />
             <Wrapper>
               <Routes isLoggedIn={isLoggedIn} />
             </Wrapper>
