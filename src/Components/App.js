@@ -6,7 +6,6 @@ import { useQuery } from "react-apollo-hooks";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyles from "../Styles/GlobalStyles";
-import Theme from "../Styles/Theme";
 import Routes from "./Routes";
 import Header from "./Header";
 
@@ -27,19 +26,17 @@ export default () => {
   } = useQuery(QUERY);
 
   return (
-    <ThemeProvider theme={Theme}>
-      <>
-        <GlobalStyles />
-        <Router>
-          <>
-            <Header />
-            <Wrapper>
-              <Routes isLoggedIn={isLoggedIn} />
-            </Wrapper>
-          </>
-        </Router>
-        <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
-      </>
-    </ThemeProvider>
+    <>
+      <GlobalStyles />
+      <Router>
+        <>
+          <Header />
+          <Wrapper>
+            <Routes isLoggedIn={isLoggedIn} />
+          </Wrapper>
+        </>
+      </Router>
+      <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
+    </>
   );
 };
