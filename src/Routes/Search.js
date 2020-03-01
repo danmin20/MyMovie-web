@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { useQuery } from "react-apollo-hooks";
 import { SEARCH_MOVIE } from "../queries";
@@ -24,12 +24,6 @@ export default withRouter(({ location: { search } }) => {
       start: 1
     }
   });
-  {
-    !loading &&
-      data &&
-      data.naverMovie &&
-      data.naverMovie.map((movie, index) => console.log(movie, index));
-  }
   return (
     <Wrapper>
       <Helmet>
