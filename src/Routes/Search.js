@@ -4,8 +4,16 @@ import { useQuery } from "react-apollo-hooks";
 import { SEARCH_MOVIE } from "../queries";
 import styled from "styled-components";
 import Loader from "../Components/Loader";
+import Helmet from "react-helmet";
+import MovieCard from "../Components/MovieCard";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: grid;
+  margin-top: 100px;
+  grid-template-columns: repeat(4, 0.7fr);
+  flex-wrap: wrap;
+  justify-items: center;
+`;
 
 export default withRouter(({ location: { search } }) => {
   const term = decodeURIComponent(search).split("=")[1];
@@ -24,17 +32,17 @@ export default withRouter(({ location: { search } }) => {
   }
   return (
     <Wrapper>
+      <Helmet>
+        <title>Search | MyMovie</title>
+      </Helmet>
+      {term === undefined && <div>let's search</div>}
       {loading && <Loader />}
-      <div style={{ height: 100, backgroundColor: "red" }}>
-        {!loading &&
-          data &&
-          data.naverMovie &&
-          data.naverMovie.map((movie, index) => (
-            <div style={{ backgroundColor: "black" }} key={index}>
-              {movie.title}
-            </div>
-          ))}
-      </div>
+      {!loading &&
+        data &&
+        data.naverMovie &&
+        data.naverMovie.map((movie, index) => (
+          <MovieCard key={index} data={movie} />
+        ))}
     </Wrapper>
   );
 });

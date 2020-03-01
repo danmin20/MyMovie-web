@@ -7,6 +7,7 @@ export default createGlobalStyle`
         font-family:'Song Myung', sans-serif;
     }
     a {
+        color: black;
         text-decoration:none;
     }
     input:focus {
