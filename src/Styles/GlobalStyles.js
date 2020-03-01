@@ -4,7 +4,7 @@ import reset from "styled-reset";
 export default createGlobalStyle`
     ${reset};
     body {
-        font-family:'Do Hyeon', sans-serif;
+        font-family:'Song Myung', sans-serif;
     }
     a {
         text-decoration:none;
