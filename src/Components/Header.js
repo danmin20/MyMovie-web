@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Header = styled.head`
+const Header = styled.header`
   width: 100%;
   border: 0;
   position: fixed;

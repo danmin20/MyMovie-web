@@ -69,3 +69,16 @@ export const MOVIE_DETAIL = gql`
     }
   }
 `;
+
+export const SEARCH_MOVIE = gql`
+  query naverMovie($term: String!, $start: Int!) {
+    naverMovie(term: $term, start: $start) {
+      title
+      subtitle
+      actor
+      director
+      userRating
+      image
+    }
+  }
+`;

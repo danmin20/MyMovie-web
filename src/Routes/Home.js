@@ -10,6 +10,7 @@ import FadeIn from "react-fade-in";
 import MoreDetail from "../Components/MoreDetail";
 import Input from "../Components/Input";
 import useInput from "../Hooks/useInput";
+import { withRouter } from "react-router-dom";
 
 const Wrapper = styled.div`
   margin-top: 70px;
@@ -74,7 +75,7 @@ const SearchInput = styled(Input)`
   }
 `;
 
-export default () => {
+export default withRouter(({ history }) => {
   const date = new Date();
   const yesterday = getDate(date);
   const { data, loading } = useQuery(BOX_WEEK, {
@@ -160,21 +161,30 @@ export default () => {
   const leave_9 = () => {
     setShown_9(false);
   };
+
   const search = useInput("");
+  const onSearchSubmit = e => {
+    e.preventDefault();
+    history.push("/search?term=" + encodeURIComponent(search.value));
+  };
   return (
     <Wrapper>
       <Helmet>
         <title>Home | MyMovie</title>
       </Helmet>
-      <SearchInput
-        value={search.value}
-        onChange={search.onChange}
-        placeholder="SEARCH"
-      />
+      <form onSubmit={onSearchSubmit}>
+        <SearchInput
+          value={search.value}
+          onChange={search.onChange}
+          placeholder="SEARCH"
+        />
+      </form>
       {loading && <Loader />}
       {!loading && (
         <BoxOffice onMouseEnter={onEnter} onMouseLeave={onLeave}>
-          <Main>BOXOFFICE <span style={{fontSize: 25}}>of This Week</span></Main>
+          <Main>
+            BOXOFFICE <span style={{ fontSize: 25 }}>of This Week</span>
+          </Main>
           {isShown && (
             <Field>
               <Movies>
@@ -369,4 +379,4 @@ export default () => {
       )}
     </Wrapper>
   );
-};
+});

@@ -1,6 +1,6 @@
 import React from "react";
 import { gql } from "apollo-boost";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { HashRouter as Router } from "react-router-dom";
 import { useQuery } from "react-apollo-hooks";
 import { ToastContainer, toast } from "react-toastify";
