@@ -8,10 +8,11 @@ import { getDate } from "../getDate";
 import BoxofficeDetail from "../Components/BoxofficeDetail";
 import FadeIn from "react-fade-in";
 import MoreDetail from "../Components/MoreDetail";
+import Input from "../Components/Input";
+import useInput from "../Hooks/useInput";
 
 const Wrapper = styled.div`
   margin-top: 70px;
-  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,6 +38,7 @@ const Field = styled.div`
 const Movies = styled.div`
   font-size: 13px;
   flex: 0.6;
+  padding-left: 30px;
 `;
 const Movie = styled.div`
   padding: 10px;
@@ -44,8 +46,8 @@ const Movie = styled.div`
 `;
 const Detailed = styled.div`
   flex: 0.4;
-  font-size: 25px;
-  padding: 30px;
+  font-size: 20px;
+  padding-right: 30px;
 `;
 const Pointed = styled.div`
   display: flex;
@@ -57,6 +59,19 @@ const Big = styled.div`
 const Small = styled.div`
   font-size: 15px;
   color: #adadad;
+`;
+
+const SearchInput = styled(Input)`
+  border: 0;
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  margin: 50px 0;
+  text-align: center;
+  &::placeholder {
+    color: #adadad;
+  }
 `;
 
 export default () => {
@@ -145,15 +160,21 @@ export default () => {
   const leave_9 = () => {
     setShown_9(false);
   };
+  const search = useInput("");
   return (
     <Wrapper>
       <Helmet>
         <title>Home | MyMovie</title>
       </Helmet>
+      <SearchInput
+        value={search.value}
+        onChange={search.onChange}
+        placeholder="SEARCH"
+      />
       {loading && <Loader />}
       {!loading && (
         <BoxOffice onMouseEnter={onEnter} onMouseLeave={onLeave}>
-          <Main>BOXOFFICE of This Week</Main>
+          <Main>BOXOFFICE <span style={{fontSize: 25}}>of This Week</span></Main>
           {isShown && (
             <Field>
               <Movies>
@@ -282,34 +303,64 @@ export default () => {
               </Movies>
               <Detailed>
                 {shown_0 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[0].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[0].rank}
+                    code={data.boxofficeWeek[0].movieCd}
+                  />
                 )}
                 {shown_1 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[1].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[1].rank}
+                    code={data.boxofficeWeek[1].movieCd}
+                  />
                 )}
                 {shown_2 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[2].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[2].rank}
+                    code={data.boxofficeWeek[2].movieCd}
+                  />
                 )}
                 {shown_3 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[3].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[3].rank}
+                    code={data.boxofficeWeek[3].movieCd}
+                  />
                 )}
                 {shown_4 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[4].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[4].rank}
+                    code={data.boxofficeWeek[4].movieCd}
+                  />
                 )}
                 {shown_5 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[5].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[5].rank}
+                    code={data.boxofficeWeek[5].movieCd}
+                  />
                 )}
                 {shown_6 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[6].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[6].rank}
+                    code={data.boxofficeWeek[6].movieCd}
+                  />
                 )}
                 {shown_7 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[7].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[7].rank}
+                    code={data.boxofficeWeek[7].movieCd}
+                  />
                 )}
                 {shown_8 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[8].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[8].rank}
+                    code={data.boxofficeWeek[8].movieCd}
+                  />
                 )}
                 {shown_9 && (
-                  <BoxofficeDetail code={data.boxofficeWeek[9].movieCd} />
+                  <BoxofficeDetail
+                    rank={data.boxofficeWeek[9].rank}
+                    code={data.boxofficeWeek[9].movieCd}
+                  />
                 )}
               </Detailed>
             </Field>
