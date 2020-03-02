@@ -37,7 +37,9 @@ export default () => {
         <div>마이무비</div>
       </Link>
       {isLoggedIn ? (
-        <div>마이페이지</div>
+        <Link to="/mypage">
+          <div>마이페이지</div>
+        </Link>
       ) : (
         <Link to="/auth">
           <div>로그인</div>
