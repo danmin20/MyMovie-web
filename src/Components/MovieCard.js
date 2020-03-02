@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import FadeIn from "react-fade-in";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
 const Constructor = styled.div`
   margin: 20px;
@@ -64,9 +65,11 @@ export default ({ data }) => {
   const onLeave = () => {
     setIsShown(false);
   };
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
   return (
     <Constructor>
-      <Box onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      <Box onClick={toggle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
         <NoImg background={require("../noImage.png")} />
         <Card background={data.image} />
         <Title>{data.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}</Title>
@@ -83,6 +86,10 @@ export default ({ data }) => {
           </FadeIn>
         </Info>
       )}
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>title</ModalHeader>
+        <ModalBody>hi</ModalBody>
+      </Modal>
     </Constructor>
   );
 };
