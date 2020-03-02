@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import useInput from "../Hooks/useInput";
 import { toast } from "react-toastify";
+import FadeIn from "react-fade-in";
 
 const Constructor = styled.div`
   margin: 20px;
@@ -10,6 +11,15 @@ const Constructor = styled.div`
   align-items: center;
   flex-direction: column;
 `;
+
+const Info = styled.div`
+  font-size: 15px;
+  text-align: center;
+  padding-bottom: 10px;
+  border: 0px solid #adadad;
+  border-bottom-width: 0.5px;
+`;
+
 const Box = styled.div`
   width: 150px;
   display: flex;
@@ -52,30 +62,42 @@ const NoImg = styled.div`
 `;
 
 const Title = styled.div`
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 5px;
 `;
 
 export default ({ data }) => {
+  const [isShown, setIsShown] = useState(false);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-  // const handleUpload = async () => {
-  //   if(sentimentInput===""){
-  //     toast.error("내용을 입력해주세요")
-  //   }else{
-
-  //   }
-  // }
+  const onEnter = () => {
+    setIsShown(true);
+  };
+  const onLeave = () => {
+    setIsShown(false);
+  };
   return (
     <Constructor>
-      <Box onClick={toggle}>
+      <Box onClick={toggle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
         <NoImg background={require("../noImage.png")} />
         <Card background={data.img} />
-        <Title>
-          {data.movieNm.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
-        </Title>
-        <div>{data.rate}</div>
       </Box>
+      {isShown && (
+        <Info>
+          <FadeIn>
+            <Title>
+              {data.movieNm.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
+            </Title>
+            <div>
+              {data.rate === "1" && "★☆☆☆☆"}
+              {data.rate === "2" && "★★☆☆☆"}
+              {data.rate === "3" && "★★★☆☆"}
+              {data.rate === "4" && "★★★★☆"}
+              {data.rate === "5" && "★★★★★"}
+            </div>
+          </FadeIn>
+        </Info>
+      )}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{data.movieNm}</ModalHeader>
         <ModalBody>
