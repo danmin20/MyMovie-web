@@ -34,7 +34,6 @@ const Row = styled.div`
   width: 100%;
   margin: 0 50px;
   text-align: center;
-  margin-top: auto;
 `;
 
 const Menu = styled.div`
@@ -59,6 +58,9 @@ const Menu = styled.div`
 
 const Name = styled.div`
   font-size: 20px;
+  margin-top: 7px;
+  position: flex;
+  text-align: center;
 `;
 
 const Page = styled.div`
@@ -80,17 +82,19 @@ export default () => {
           </Link>
         </Row>
         <Row>
-          <Menu>
-            {isLoggedIn ? (
-              <Link to="/mypage">
+          {isLoggedIn ? (
+            <Link to="/mypage">
+              <Menu>
                 <Page>My Page</Page>
-              </Link>
-            ) : (
-              <Link to="/auth">
+              </Menu>
+            </Link>
+          ) : (
+            <Link to="/auth">
+              <Menu>
                 <Page>Authorization</Page>
-              </Link>
-            )}
-          </Menu>
+              </Menu>
+            </Link>
+          )}
         </Row>
       </HeaderWrapper>
     </Header>
