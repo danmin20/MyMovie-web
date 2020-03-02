@@ -87,6 +87,7 @@ export const ME = gql`
     me {
       name
       movies {
+        id
         movieNm
         sentiment
         img
@@ -104,6 +105,19 @@ export const UPLOAD = gql`
     $rate: String!
   ) {
     upload(sentiment: $sentiment, movieNm: $movieNm, img: $img, rate: $rate) {
+      id
+    }
+  }
+`;
+
+export const EDIT_MOVIE = gql`
+  mutation editMovie(
+    $id: String!
+    $sentiment: String
+    $rate: String
+    $action: ACTION!
+  ) {
+    editMovie(id: $id, sentiment: $sentiment, rate: $rate, action: $action) {
       id
     }
   }

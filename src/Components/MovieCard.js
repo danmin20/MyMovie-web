@@ -107,8 +107,8 @@ export default withRouter(({ data, history }) => {
     if (sentiment.value === "") {
       toast.error("내용을 입력해주세요.");
     } else {
-      setLoading(true);
       try {
+        setLoading(true);
         const {
           data: { upload }
         } = await uploadMutation({
