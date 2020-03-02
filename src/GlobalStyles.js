@@ -8,7 +8,10 @@ export default createGlobalStyle`
     }
     a {
         color: black;
-        text-decoration:none;
+        text-decoration:none !important;
+        :hover{
+            color: black;
+        }
     }
     input:focus {
         outline:none;

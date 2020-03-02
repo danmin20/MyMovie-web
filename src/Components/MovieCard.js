@@ -16,6 +16,19 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  cursor: pointer;
+  :hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
 `;
 
 const Card = styled.div`

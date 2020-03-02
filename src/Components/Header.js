@@ -18,13 +18,52 @@ const Header = styled.header`
   left: 0;
   border-radius: 0px;
   display: flex;
-  justify-content: center;
   background-color: white;
-  align-items: center;
   padding: 23px 0px;
   border: 0px solid #adadad;
   border-bottom-width: 0.5px;
   z-index: 2;
+`;
+
+const HeaderWrapper = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+const Row = styled.div`
+  width: 100%;
+  margin: 0 50px;
+  text-align: center;
+  margin-top: auto;
+`;
+
+const Menu = styled.div`
+  width: 100px;
+  background-color: gray;
+  border-radius: 30px;
+  padding: 10px 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  :hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+`;
+
+const Name = styled.div`
+  font-size: 20px;
+`;
+
+const Page = styled.div`
+  font-size: 10px;
+  color: white;
 `;
 
 export default () => {
@@ -33,18 +72,27 @@ export default () => {
   } = useQuery(QUERY);
   return (
     <Header>
-      <Link to="/">
-        <div>마이무비</div>
-      </Link>
-      {isLoggedIn ? (
-        <Link to="/mypage">
-          <div>마이페이지</div>
-        </Link>
-      ) : (
-        <Link to="/auth">
-          <div>로그인</div>
-        </Link>
-      )}
+      <HeaderWrapper>
+        <Row />
+        <Row>
+          <Link to="/">
+            <Name>마이무비</Name>
+          </Link>
+        </Row>
+        <Row>
+          <Menu>
+            {isLoggedIn ? (
+              <Link to="/mypage">
+                <Page>My Page</Page>
+              </Link>
+            ) : (
+              <Link to="/auth">
+                <Page>Authorization</Page>
+              </Link>
+            )}
+          </Menu>
+        </Row>
+      </HeaderWrapper>
     </Header>
   );
 };
