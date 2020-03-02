@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import FadeIn from "react-fade-in";
-import { Modal, ModalBody, ModalHeader, Input, Button } from "reactstrap";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Input,
+  Button,
+  ModalFooter
+} from "reactstrap";
 import { toast } from "react-toastify";
 import useInput from "../Hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
@@ -142,7 +149,7 @@ export default withRouter(({ data, history }) => {
         </Info>
       )}
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>
+        <ModalHeader style={{ backgroundColor: "gray", color: "white" }}>
           {data.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
         </ModalHeader>
         <ModalBody>
@@ -172,9 +179,11 @@ export default withRouter(({ data, history }) => {
             <option>5</option>
           </Input>
         </ModalBody>
-        <Button onClick={handleUpload}>
-          {loading ? <ClipLoader size={20} color={"white"} /> : "submit"}
-        </Button>
+        <ModalFooter>
+          <Button style={{ fontSize: 12 }} onClick={handleUpload}>
+            {loading ? <ClipLoader size={12} color={"white"} /> : "SUBMIT"}
+          </Button>
+        </ModalFooter>
       </Modal>
     </Constructor>
   );

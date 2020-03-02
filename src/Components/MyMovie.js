@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Modal, ModalBody, ModalHeader } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, Button, ModalFooter } from "reactstrap";
 import useInput from "../Hooks/useInput";
 import { toast } from "react-toastify";
 import FadeIn from "react-fade-in";
@@ -69,6 +69,7 @@ const Title = styled.div`
 export default ({ data }) => {
   const [isShown, setIsShown] = useState(false);
   const [modal, setModal] = useState(false);
+  const [edit, setEdit] = useState(false);
   const toggle = () => setModal(!modal);
   const onEnter = () => {
     setIsShown(true);
@@ -99,11 +100,18 @@ export default ({ data }) => {
         </Info>
       )}
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>{data.movieNm}</ModalHeader>
+        <ModalHeader style={{ backgroundColor: "gray", color: "white" }}>
+          {data.movieNm}
+        </ModalHeader>
         <ModalBody>
-          <div>{data.rate}</div>
           <div>{data.sentiment}</div>
         </ModalBody>
+        <ModalFooter>
+          <Button style={{ width: 50, fontSize: 12 }}>EDIT</Button>
+          <Button style={{ width: 50, fontSize: 12 }} color="danger">
+            DEL
+          </Button>
+        </ModalFooter>
       </Modal>
     </Constructor>
   );
