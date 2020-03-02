@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import FadeIn from "react-fade-in";
-import { Modal, ModalBody, ModalHeader } from "reactstrap";
-import useInput from "../Hooks/useInput";
+import { Modal, ModalBody, ModalHeader, Input, Button } from "reactstrap";
 import { toast } from "react-toastify";
+import useInput from "../Hooks/useInput";
+import { useMutation } from "react-apollo-hooks";
+import { UPLOAD } from "../queries";
+import { withRouter } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 const Constructor = styled.div`
   margin: 20px;
@@ -76,10 +80,13 @@ const Detail = styled.div`
   color: #636363;
 `;
 
-export default ({ data }) => {
+export default withRouter(({ data, history }) => {
   const [isShown, setIsShown] = useState(false);
   const [modal, setModal] = useState(false);
-  const sentimentInput = useInput("");
+  const [loading, setLoading] = useState(false);
+  const [uploadMutation] = useMutation(UPLOAD);
+  const sentiment = useInput("");
+  const rate = useInput("1");
   const onEnter = () => {
     setIsShown(true);
   };
@@ -87,13 +94,34 @@ export default ({ data }) => {
     setIsShown(false);
   };
   const toggle = () => setModal(!modal);
-  // const handleUpload = async () => {
-  //   if(sentimentInput===""){
-  //     toast.error("내용을 입력해주세요")
-  //   }else{
-
-  //   }
-  // }
+  const handleUpload = async () => {
+    const movieNm = data.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "");
+    const img = data.image;
+    if (sentiment.value === "") {
+      toast.error("내용을 입력해주세요.");
+    } else {
+      setLoading(true);
+      try {
+        const {
+          data: { upload }
+        } = await uploadMutation({
+          variables: {
+            movieNm,
+            sentiment: sentiment.value,
+            rate: rate.value,
+            img
+          }
+        });
+        if (upload.id) {
+          history.push("/mypage");
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
   return (
     <Constructor>
       <Box onClick={toggle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
@@ -114,9 +142,40 @@ export default ({ data }) => {
         </Info>
       )}
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>title</ModalHeader>
-        <ModalBody>hi</ModalBody>
+        <ModalHeader toggle={toggle}>
+          {data.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
+        </ModalHeader>
+        <ModalBody>
+          <div style={{ fontSize: 12, marginTop: 10, marginBottom: 10 }}>
+            감상평
+          </div>
+          <Input
+            type="textarea"
+            placeholder="글을 작성해주세요."
+            value={sentiment.value}
+            onChange={sentiment.onChange}
+            height={100}
+          />
+          <div style={{ fontSize: 12, marginTop: 30, marginBottom: 10 }}>
+            평점
+          </div>
+          <Input
+            style={{ marginBottom: 30 }}
+            type="select"
+            value={rate.value}
+            onChange={rate.onChange}
+          >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </Input>
+        </ModalBody>
+        <Button onClick={handleUpload}>
+          {loading ? <ClipLoader size={20} color={"white"} /> : "submit"}
+        </Button>
       </Modal>
     </Constructor>
   );
-};
+});

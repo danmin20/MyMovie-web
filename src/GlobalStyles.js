@@ -4,7 +4,7 @@ import reset from "styled-reset";
 export default createGlobalStyle`
     ${reset};
     body {
-        font-family:'Song Myung', sans-serif;
+        font-family:'Song Myung';
     }
     a {
         color: black;
@@ -13,7 +13,13 @@ export default createGlobalStyle`
             color: black;
         }
     }
+    input {
+        font-family:'Nanum Gothic';
+    }
     input:focus {
         outline:none;
+    }
+    .modal{
+        font-family:'Nanum Gothic';
     }
 `;

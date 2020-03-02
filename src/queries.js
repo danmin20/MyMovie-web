@@ -81,3 +81,30 @@ export const SEARCH_MOVIE = gql`
     }
   }
 `;
+
+export const ME = gql`
+  {
+    me {
+      name
+      movies {
+        movieNm
+        sentiment
+        img
+        rate
+      }
+    }
+  }
+`;
+
+export const UPLOAD = gql`
+  mutation upload(
+    $sentiment: String!
+    $movieNm: String!
+    $img: String!
+    $rate: String!
+  ) {
+    upload(sentiment: $sentiment, movieNm: $movieNm, img: $img, rate: $rate) {
+      id
+    }
+  }
+`;
