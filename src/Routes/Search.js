@@ -24,6 +24,7 @@ export default withRouter(({ location: { search } }) => {
       start: 1
     }
   });
+  console.log(data)
   return (
     <Wrapper>
       <Helmet>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useQuery } from "react-apollo-hooks";
 import { BOX_WEEK } from "../queries";
@@ -161,7 +161,6 @@ export default withRouter(({ history }) => {
   const leave_9 = () => {
     setShown_9(false);
   };
-
   const search = useInput("");
   const onSearchSubmit = e => {
     e.preventDefault();

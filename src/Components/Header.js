@@ -1,6 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { gql } from "apollo-boost";
+import { useQuery } from "react-apollo-hooks";
+
+const QUERY = gql`
+  {
+    isLoggedIn @client
+  }
+`;
 
 const Header = styled.header`
   width: 100%;
@@ -20,11 +28,21 @@ const Header = styled.header`
 `;
 
 export default () => {
+  const {
+    data: { isLoggedIn }
+  } = useQuery(QUERY);
   return (
     <Header>
-      <Link to={"/"}>
+      <Link to="/">
         <div>마이무비</div>
       </Link>
+      {isLoggedIn ? (
+        <div>마이페이지</div>
+      ) : (
+        <Link to="/auth">
+          <div>로그인</div>
+        </Link>
+      )}
     </Header>
   );
 };

@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import FadeIn from "react-fade-in";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
+import useInput from "../Hooks/useInput";
+import { toast } from "react-toastify";
 
 const Constructor = styled.div`
   margin: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 const Box = styled.div`
   width: 150px;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 `;
 
 const Card = styled.div`
@@ -55,18 +60,27 @@ const Topic = styled.div`
 const Detail = styled.div`
   margin-top: 3px;
   margin-bottom: 10px;
+  color: #636363;
 `;
 
 export default ({ data }) => {
   const [isShown, setIsShown] = useState(false);
+  const [modal, setModal] = useState(false);
+  const sentimentInput = useInput("");
   const onEnter = () => {
     setIsShown(true);
   };
   const onLeave = () => {
     setIsShown(false);
   };
-  const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+  // const handleUpload = async () => {
+  //   if(sentimentInput===""){
+  //     toast.error("내용을 입력해주세요")
+  //   }else{
+
+  //   }
+  // }
   return (
     <Constructor>
       <Box onClick={toggle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
