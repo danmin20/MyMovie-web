@@ -11,8 +11,8 @@ import {
 } from "reactstrap";
 import { toast } from "react-toastify";
 import useInput from "../Hooks/useInput";
-import { useMutation } from "react-apollo-hooks";
-import { UPLOAD } from "../queries";
+import { useMutation, useQuery } from "react-apollo-hooks";
+import { UPLOAD, ME } from "../queries";
 import { withRouter } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 
@@ -91,6 +91,7 @@ export default withRouter(({ data, history }) => {
   const [isShown, setIsShown] = useState(false);
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { refetch } = useQuery(ME);
   const [uploadMutation] = useMutation(UPLOAD);
   const sentiment = useInput("");
   const rate = useInput("1");
@@ -120,6 +121,7 @@ export default withRouter(({ data, history }) => {
           }
         });
         if (upload.id) {
+          await refetch();
           history.push("/mypage");
         }
       } catch (e) {
