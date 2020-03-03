@@ -7,9 +7,16 @@ import Loader from "../Components/Loader";
 import Helmet from "react-helmet";
 import MovieCard from "../Components/MovieCard";
 
+const Constructor = styled.div`
+  margin-top: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Wrapper = styled.div`
   display: grid;
-  margin-top: 100px;
+  margin-top: 10px;
   grid-template-columns: repeat(4, 0.7fr);
   flex-wrap: wrap;
   justify-items: center;
@@ -24,20 +31,22 @@ export default withRouter(({ location: { search } }) => {
       start: 1
     }
   });
-  console.log(data)
+  console.log(data);
   return (
-    <Wrapper>
-      <Helmet>
-        <title>Search | MyMovie</title>
-      </Helmet>
-      {term === undefined && <div>let's search</div>}
-      {loading && <Loader />}
-      {!loading &&
-        data &&
-        data.naverMovie &&
-        data.naverMovie.map((movie, index) => (
-          <MovieCard key={index} data={movie} />
-        ))}
-    </Wrapper>
+    <>
+      <Constructor>{loading && <Loader />}</Constructor>
+      <Wrapper>
+        <Helmet>
+          <title>Search | MyMovie</title>
+        </Helmet>
+        {term === undefined && <div>let's search</div>}
+        {!loading &&
+          data &&
+          data.naverMovie &&
+          data.naverMovie.map((movie, index) => (
+            <MovieCard key={index} data={movie} />
+          ))}
+      </Wrapper>
+    </>
   );
 });
