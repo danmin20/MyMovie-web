@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-import { gql } from "apollo-boost";
 import { useQuery, useMutation } from "react-apollo-hooks";
 import FadeIn from "react-fade-in";
 import { toast } from "react-toastify";
