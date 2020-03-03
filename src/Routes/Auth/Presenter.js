@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 const Blank = styled(Input)`
   font-size: 15px;
   border: 0px solid white;
-  border-bottom-width: 1px;
+  border-bottom-width: 0.5px;
   padding: 10px;
   width: 100%;
   color: white;
@@ -29,6 +29,18 @@ const Button = styled.div`
   margin-top: 10px;
   text-align: center;
   cursor: pointer;
+  :hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
 `;
 
 const Form = styled.div`
@@ -41,8 +53,20 @@ const Form = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 `;
 
-const Link = styled.span`
+const Link = styled.div`
   cursor: pointer;
+  :hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
 `;
 
 export default ({ action, name, email, setAction, onSubmit, secret }) => (
