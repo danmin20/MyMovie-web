@@ -201,7 +201,6 @@ export default ({ data }) => {
             placeholder="글을 작성해주세요."
             value={sentiment.value}
             onChange={sentiment.onChange}
-            height={100}
           />
           <div style={{ fontSize: 12, marginTop: 30, marginBottom: 10 }}>
             평점
