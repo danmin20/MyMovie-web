@@ -122,3 +122,11 @@ export const EDIT_MOVIE = gql`
     }
   }
 `;
+
+export const EDIT_ME = gql`
+  mutation editMe($name: String) {
+    editMe(name: $name) {
+      id
+    }
+  }
+`;
