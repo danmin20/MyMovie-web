@@ -23,3 +23,9 @@ export const LOCAL_LOGIN = gql`
     logUserIn(token: $token) @client
   }
 `;
+
+export const LOCAL_LOGOUT = gql`
+  mutation logUserOut {
+    logUserOut @client
+  }
+`;
