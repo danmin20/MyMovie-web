@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import GlobalStyles from "../GlobalStyles";
 import Routes from "./Routes";
 import Header from "./Header";
+import { ME } from "../queries";
 
 const QUERY = gql`
   {
@@ -24,13 +25,13 @@ export default () => {
   const {
     data: { isLoggedIn }
   } = useQuery(QUERY);
-
+  const { loading, data: me } = useQuery(ME);
   return (
     <>
       <GlobalStyles />
       <Router>
         <>
-          <Header />
+          {!loading && <Header me={me} isLoggedIn={isLoggedIn} />}
           <Wrapper>
             <Routes isLoggedIn={isLoggedIn} />
           </Wrapper>
