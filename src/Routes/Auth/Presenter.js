@@ -2,6 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
 import Input from "../../Components/Input";
+import { ClipLoader } from "react-spinners";
 
 const Wrapper = styled.div`
   min-height: 80vh;
@@ -69,7 +70,15 @@ const Link = styled.div`
   }
 `;
 
-export default ({ action, name, email, setAction, onSubmit, secret }) => (
+export default ({
+  loading,
+  action,
+  name,
+  email,
+  setAction,
+  onSubmit,
+  secret
+}) => (
   <Wrapper>
     <Form>
       {action === "signin" && (
@@ -79,7 +88,13 @@ export default ({ action, name, email, setAction, onSubmit, secret }) => (
           </Helmet>
           <form onSubmit={onSubmit}>
             <Blank placeholder={"EMAIL"} {...email} type="email" />
-            <Button onClick={onSubmit}>Sign in</Button>
+            {!loading ? (
+              <Button onClick={onSubmit}>Sign in</Button>
+            ) : (
+              <Button style={{ cursor: "default" }}>
+                <ClipLoader size={12} color={"white"} />
+              </Button>
+            )}
           </form>
         </>
       )}
@@ -91,7 +106,13 @@ export default ({ action, name, email, setAction, onSubmit, secret }) => (
           <form onSubmit={onSubmit}>
             <Blank placeholder={"NAME"} {...name} />
             <Blank placeholder={"EMAIL"} {...email} type="email" />
-            <Button onClick={onSubmit}>Sign up</Button>
+            {!loading ? (
+              <Button onClick={onSubmit}>Sign up</Button>
+            ) : (
+              <Button style={{ cursor: "default" }}>
+                <ClipLoader size={12} color={"white"} />
+              </Button>
+            )}
           </form>
         </>
       )}
@@ -102,7 +123,13 @@ export default ({ action, name, email, setAction, onSubmit, secret }) => (
           </Helmet>
           <form onSubmit={onSubmit}>
             <Blank placeholder={"SECRET KEY"} {...secret} />
-            <Button onClick={onSubmit}>Confirm</Button>
+            {!loading ? (
+              <Button onClick={onSubmit}>Confirm</Button>
+            ) : (
+              <Button style={{ cursor: "default" }}>
+                <ClipLoader size={12} color={"white"} />
+              </Button>
+            )}{" "}
           </form>
         </>
       )}

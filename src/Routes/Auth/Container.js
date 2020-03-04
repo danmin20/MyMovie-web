@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 
 export default withRouter(({ history }) => {
   const [action, setAction] = useState("signin");
+  const [loading, setLoading] = useState(false);
   const name = useInput("");
   const email = useInput("");
   const secret = useInput("");
@@ -33,6 +34,7 @@ export default withRouter(({ history }) => {
     if (action === "signin") {
       if (email.value !== "") {
         try {
+          setLoading(true);
           const {
             data: { requestSecret }
           } = await signinMutation();
@@ -46,6 +48,8 @@ export default withRouter(({ history }) => {
         } catch (e) {
           console.log(e);
           toast.error("오류발생. 재시도하십시오.");
+        } finally {
+          setLoading(false);
         }
       } else {
         toast.error("이메일을 입력해주세요.");
@@ -53,6 +57,7 @@ export default withRouter(({ history }) => {
     } else if (action === "signup") {
       if (email.value !== "" && name.value !== "") {
         try {
+          setLoading(true);
           const {
             data: { createAccount }
           } = await signupMutation();
@@ -65,6 +70,8 @@ export default withRouter(({ history }) => {
         } catch (e) {
           console.log(e);
           toast.error("이미 존재하는 계정입니다.");
+        } finally {
+          setLoading(false);
         }
       } else {
         toast.error("입력란을 모두 채워주세요.");
@@ -72,6 +79,7 @@ export default withRouter(({ history }) => {
     } else if (action === "confirm") {
       if (secret.value !== "") {
         try {
+          setLoading(true);
           const {
             data: { confirmSecret: token }
           } = await confirmMutation();
@@ -83,6 +91,8 @@ export default withRouter(({ history }) => {
           }
         } catch {
           toast.error("오류발생. 재시도하십시오.");
+        } finally {
+          setLoading(false);
         }
       }
     }
@@ -90,6 +100,7 @@ export default withRouter(({ history }) => {
 
   return (
     <Presenter
+      loading={loading}
       setAction={setAction}
       action={action}
       name={name}
