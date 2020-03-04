@@ -90,7 +90,7 @@ export default withRouter(({ history }) => {
             throw Error();
           }
         } catch {
-          toast.error("오류발생. 재시도하십시오.");
+          toast.error("올바르지 않은 시크릿 키입니다.");
         } finally {
           setLoading(false);
         }
