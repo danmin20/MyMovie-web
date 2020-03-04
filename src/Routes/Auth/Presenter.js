@@ -129,7 +129,7 @@ export default ({
               <Button style={{ cursor: "default" }}>
                 <ClipLoader size={12} color={"white"} />
               </Button>
-            )}{" "}
+            )}
           </form>
         </>
       )}
