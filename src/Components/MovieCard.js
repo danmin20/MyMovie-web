@@ -87,7 +87,7 @@ const Detail = styled.div`
   color: #636363;
 `;
 
-export default withRouter(({ data, history }) => {
+export default withRouter(({ data, isLoggedIn, history }) => {
   const [isShown, setIsShown] = useState(false);
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -131,6 +131,10 @@ export default withRouter(({ data, history }) => {
       }
     }
   };
+  if (modal && !isLoggedIn) {
+    setModal(false);
+    toast.error("글을 작성하려면 로그인이 필요합니다.");
+  }
   return (
     <Constructor>
       <Box onClick={toggle} onMouseEnter={onEnter} onMouseLeave={onLeave}>
@@ -150,7 +154,7 @@ export default withRouter(({ data, history }) => {
           </FadeIn>
         </Info>
       )}
-      <Modal isOpen={modal} toggle={toggle}>
+      <Modal isOpen={isLoggedIn && modal} toggle={toggle}>
         <ModalHeader style={{ backgroundColor: "gray", color: "white" }}>
           {data.title.replace(/<b>/gi, "").replace(/<\/b>/gi, "")}
         </ModalHeader>

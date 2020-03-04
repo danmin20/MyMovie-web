@@ -6,6 +6,13 @@ import styled from "styled-components";
 import Loader from "../Components/Loader";
 import Helmet from "react-helmet";
 import MovieCard from "../Components/MovieCard";
+import { gql } from "apollo-boost";
+
+const QUERY = gql`
+  {
+    isLoggedIn @client
+  }
+`;
 
 const Constructor = styled.div`
   margin-top: 110px;
@@ -23,6 +30,9 @@ const Wrapper = styled.div`
 `;
 
 export default withRouter(({ location: { search } }) => {
+  const {
+    data: { isLoggedIn }
+  } = useQuery(QUERY);
   const term = decodeURIComponent(search).split("=")[1];
   const { data, loading } = useQuery(SEARCH_MOVIE, {
     skip: term === undefined,
@@ -31,7 +41,6 @@ export default withRouter(({ location: { search } }) => {
       start: 1
     }
   });
-  console.log(data);
   return (
     <>
       <Constructor>{loading && <Loader />}</Constructor>
@@ -44,7 +53,7 @@ export default withRouter(({ location: { search } }) => {
           data &&
           data.naverMovie &&
           data.naverMovie.map((movie, index) => (
-            <MovieCard key={index} data={movie} />
+            <MovieCard key={index} data={movie} isLoggedIn={isLoggedIn} />
           ))}
       </Wrapper>
     </>

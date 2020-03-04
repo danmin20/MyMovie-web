@@ -33,7 +33,7 @@ export default () => {
         <>
           {!loading && <Header me={me} isLoggedIn={isLoggedIn} />}
           <Wrapper>
-            <Routes isLoggedIn={isLoggedIn} />
+            <Routes />
           </Wrapper>
         </>
       </Router>
