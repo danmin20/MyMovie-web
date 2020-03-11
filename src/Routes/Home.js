@@ -7,10 +7,10 @@ import Loader from "../Components/Loader";
 import { getDate } from "../getDate";
 import BoxofficeDetail from "../Components/BoxofficeDetail";
 import FadeIn from "react-fade-in";
-import MoreDetail from "../Components/MoreDetail";
 import Input from "../Components/Input";
 import useInput from "../Hooks/useInput";
 import { withRouter } from "react-router-dom";
+import MovieList from "../Components/MovieList";
 
 const Wrapper = styled.div`
   margin-top: 70px;
@@ -101,66 +101,6 @@ export default withRouter(({ history }) => {
   const onLeave = () => {
     setIsShown(false);
   };
-  const enter_0 = () => {
-    setShown_0(true);
-  };
-  const leave_0 = () => {
-    setShown_0(false);
-  };
-  const enter_1 = () => {
-    setShown_1(true);
-  };
-  const leave_1 = () => {
-    setShown_1(false);
-  };
-  const enter_2 = () => {
-    setShown_2(true);
-  };
-  const leave_2 = () => {
-    setShown_2(false);
-  };
-  const enter_3 = () => {
-    setShown_3(true);
-  };
-  const leave_3 = () => {
-    setShown_3(false);
-  };
-  const enter_4 = () => {
-    setShown_4(true);
-  };
-  const leave_4 = () => {
-    setShown_4(false);
-  };
-  const enter_5 = () => {
-    setShown_5(true);
-  };
-  const leave_5 = () => {
-    setShown_5(false);
-  };
-  const enter_6 = () => {
-    setShown_6(true);
-  };
-  const leave_6 = () => {
-    setShown_6(false);
-  };
-  const enter_7 = () => {
-    setShown_7(true);
-  };
-  const leave_7 = () => {
-    setShown_7(false);
-  };
-  const enter_8 = () => {
-    setShown_8(true);
-  };
-  const leave_8 = () => {
-    setShown_8(false);
-  };
-  const enter_9 = () => {
-    setShown_9(true);
-  };
-  const leave_9 = () => {
-    setShown_9(false);
-  };
   const search = useInput("");
   const onSearchSubmit = e => {
     e.preventDefault();
@@ -188,126 +128,56 @@ export default withRouter(({ history }) => {
             <Field>
               <Movies>
                 <FadeIn>
-                  <Movie key={0} onMouseEnter={enter_0} onMouseLeave={leave_0}>
-                    {shown_0 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[0].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[0]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[0].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={1} onMouseEnter={enter_1} onMouseLeave={leave_1}>
-                    {shown_1 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[1].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[1]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[1].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={2} onMouseEnter={enter_2} onMouseLeave={leave_2}>
-                    {shown_2 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[2].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[2]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[2].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={3} onMouseEnter={enter_3} onMouseLeave={leave_3}>
-                    {shown_3 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[3].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[3]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[3].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={4} onMouseEnter={enter_4} onMouseLeave={leave_4}>
-                    {shown_4 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[4].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[4]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[4].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={5} onMouseEnter={enter_5} onMouseLeave={leave_5}>
-                    {shown_5 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[5].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[5]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[5].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={6} onMouseEnter={enter_6} onMouseLeave={leave_6}>
-                    {shown_6 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[6].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[6]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[6].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={7} onMouseEnter={enter_7} onMouseLeave={leave_7}>
-                    {shown_7 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[7].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[7]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[7].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={8} onMouseEnter={enter_8} onMouseLeave={leave_8}>
-                    {shown_8 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[8].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[8]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[8].movieNm}</Small>
-                    )}
-                  </Movie>
-                  <Movie key={9} onMouseEnter={enter_9} onMouseLeave={leave_9}>
-                    {shown_9 ? (
-                      <Pointed>
-                        <Big>{data.boxofficeWeek[9].movieNm}</Big>
-                        <div style={{ cursor: "pointer" }}>
-                          <MoreDetail data={data.boxofficeWeek[9]} />
-                        </div>
-                      </Pointed>
-                    ) : (
-                      <Small>{data.boxofficeWeek[9].movieNm}</Small>
-                    )}
-                  </Movie>
+                  <MovieList
+                    data={data.boxofficeWeek[0]}
+                    shown={shown_0}
+                    setShown={setShown_0}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[1]}
+                    shown={shown_1}
+                    setShown={setShown_1}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[2]}
+                    shown={shown_2}
+                    setShown={setShown_2}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[3]}
+                    shown={shown_3}
+                    setShown={setShown_3}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[4]}
+                    shown={shown_4}
+                    setShown={setShown_4}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[5]}
+                    shown={shown_5}
+                    setShown={setShown_5}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[6]}
+                    shown={shown_6}
+                    setShown={setShown_6}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[7]}
+                    shown={shown_7}
+                    setShown={setShown_7}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[8]}
+                    shown={shown_8}
+                    setShown={setShown_8}
+                  />
+                  <MovieList
+                    data={data.boxofficeWeek[9]}
+                    shown={shown_9}
+                    setShown={setShown_9}
+                  />
                 </FadeIn>
               </Movies>
               <Detailed>
