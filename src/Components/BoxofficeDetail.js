@@ -3,6 +3,7 @@ import styled from "styled-components";
 import FadeIn from "react-fade-in";
 import { useQuery } from "react-apollo-hooks";
 import { MOVIE_DETAIL } from "../queries";
+import Loader from "./Loader";
 
 const Row = styled.div`
   padding: 10px;
@@ -36,6 +37,7 @@ export default ({ rank, code }) => {
   });
   return (
     <>
+      {loading && <Loader />}
       {!loading && data && data.movieDetail && (
         <FadeIn>
           <Rank>_RANK {rank}</Rank>
