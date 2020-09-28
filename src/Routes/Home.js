@@ -19,12 +19,17 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const BoxOffice = styled.div`
-  background-color: gray;
   width: 100%;
+  height: 100vh;
   padding: 30px;
   font-size: 40px;
   font-weight: 100;
-  color: white;
+  color: black;
+  :hover{
+    background-color: gray;
+    color: white;
+    transition: 0.5s;
+  }
 `;
 const Main = styled.div`
   margin-left: 50px;
