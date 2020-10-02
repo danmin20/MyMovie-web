@@ -1,4 +1,4 @@
-export const getDate = date => {
+export const getDate = (date) => {
   let yesterDate = date.getTime() - 1 * 24 * 60 * 60 * 1000;
   date.setTime(yesterDate);
 
@@ -13,5 +13,5 @@ export const getDate = date => {
     yesterDay = "0" + yesterDay;
   }
 
-  return yesterYear + yesterMonth + yesterDay;
+  return `${yesterYear}${yesterMonth}${yesterDay}`;
 };
