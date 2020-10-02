@@ -32,8 +32,8 @@ const Sub = styled.span`
 export default ({ rank, code }) => {
   const { loading, data } = useQuery(MOVIE_DETAIL, {
     variables: {
-      code
-    }
+      code,
+    },
   });
   return (
     <>
@@ -52,35 +52,35 @@ export default ({ rank, code }) => {
             </Row>
             <Row>
               <Topic>제작국가</Topic>
-              {data.movieDetail.nations.map(nation => (
-                <div>{nation.nationNm}</div>
+              {data.movieDetail.nations.map((nation, idx) => (
+                <div key={idx}>{nation.nationNm}</div>
               ))}
             </Row>
           </First>
           <Row>
             <Topic>장르</Topic>
-            {data.movieDetail.genres.map(genre => (
-              <span>{genre.genreNm} </span>
+            {data.movieDetail.genres.map((genre, idx) => (
+              <span key={idx}>{genre.genreNm} </span>
             ))}
           </Row>
           <Row>
             <Topic>관람등급</Topic>
-            {data.movieDetail.audits.map(audit => (
-              <div>{audit.watchGradeNm}</div>
+            {data.movieDetail.audits.map((audit, idx) => (
+              <div key={idx}>{audit.watchGradeNm}</div>
             ))}
           </Row>
           <Row>
             <Topic>감독</Topic>
-            {data.movieDetail.directors.map(director => (
-              <div>
+            {data.movieDetail.directors.map((director, idx) => (
+              <div key={idx}>
                 {director.peopleNm} <En>{director.peopleNmEn}</En>
               </div>
             ))}
           </Row>
           <Row>
             <Topic>배우</Topic>
-            {data.movieDetail.actors.map(actor => (
-              <div>
+            {data.movieDetail.actors.map((actor, idx) => (
+              <div key={idx}>
                 {actor.cast && <Sub>{actor.cast}역 </Sub>}
                 {actor.peopleNm} <En>{actor.peopleNmEn}</En>
               </div>
@@ -88,16 +88,16 @@ export default ({ rank, code }) => {
           </Row>
           <Row>
             <Topic>상영형태</Topic>
-            {data.movieDetail.showTypes.map(type => (
-              <div>
+            {data.movieDetail.showTypes.map((type, idx) => (
+              <div key={idx}>
                 {type.showTypeGroupNm} {type.showTypeNm}
               </div>
             ))}
           </Row>
           <Row>
             <Topic>영화사</Topic>
-            {data.movieDetail.companys.map(company => (
-              <div>
+            {data.movieDetail.companys.map((company, idx) => (
+              <div key={idx}>
                 {company.companyNm} <Sub>{company.companyPartNm}</Sub>
               </div>
             ))}
